@@ -96,7 +96,15 @@ Tại tầng này, Linux chủ yếu tương tác thông qua trình điều khi�
 
 VD: Cable, Network cards, wifi, media converters...
 
-> Trong bài này ta tập trung và 4 layer đầu: Physical Layer, Data Link Layer, Network Layer, Transport Layer.
+> Tóm lại:
+>- Lớp vật lý (Physical Layer): Lớp này tương tự như các dây cáp và phần cứng khác dùng để truyền tải dữ liệu. Đại diện hình dạng là một con đường, nơi mà dữ liệu (như những chiếc xe) được truyền đi.
+>- Lớp liên kết dữ liệu (Data Link Layer): Nó tương tự như một giao điểm trên con đường. Nhiệm vụ của nó là kiểm soát việc chuyển dữ liệu an toàn giữa hai điểm trên cùng một mạng. Nó có thể kiểm tra lỗi và thực hiện việc điều chỉnh nếu cần.
+>- Lớp mạng (Network Layer): Lớp này tương tự như bản đồ trên con đường. Nó xác định địa chỉ IP và quyết định đường đi tốt nhất để truyền dữ liệu từ điểm này đến điểm khác.
+>- Lớp vận chuyển (Transport Layer): Lớp này giống như những người giao hàng. Nó chịu trách nhiệm vận chuyển dữ liệu từ nguồn đến đích một cách an toàn. Nó chia dữ liệu thành các phần nhỏ (gói) và sau đó tập hợp lại ở đích.
+>- Lớp phiên (Session Layer): Lớp này tương tự như việc kiểm tra ID khi bạn đi vào một sự kiện. Nó quản lý việc thiết lập và ngắt kết nối giữa hai hệ thống đang trao đổi thông tin.
+>- Lớp trình diễn (Presentation Layer): Lớp này như một thông dịch viên. Nó chuyển đổi dữ liệu từ định dạng mà ứng dụng có thể hiểu sang định dạng mà mạng có thể chuyển và ngược lại.
+>- Lớp ứng dụng (Application Layer): Lớp này giống như giao diện người dùng trên một ứng dụng. Đây là lớp mà người dùng tương tác với các ứng dụng và dịch vụ mạng
+>- Trong bài này ta tập trung và 4 layer đầu: Physical Layer, Data Link Layer, Network Layer, Transport Layer.
 
 # 2. Layer 1 (Physical layer)
 
