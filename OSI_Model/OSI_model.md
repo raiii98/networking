@@ -97,16 +97,145 @@ Tại tầng này, Linux chủ yếu tương tác thông qua trình điều khi�
 VD: Cable, Network cards, wifi, media converters...
 
 > Tóm lại:
->- Lớp vật lý (Physical Layer): Lớp này tương tự như các dây cáp và phần cứng khác dùng để truyền tải dữ liệu. Đại diện hình dạng là một con đường, nơi mà dữ liệu (như những chiếc xe) được truyền đi.
->- Lớp liên kết dữ liệu (Data Link Layer): Nó tương tự như một giao điểm trên con đường. Nhiệm vụ của nó là kiểm soát việc chuyển dữ liệu an toàn giữa hai điểm trên cùng một mạng. Nó có thể kiểm tra lỗi và thực hiện việc điều chỉnh nếu cần.
->- Lớp mạng (Network Layer): Lớp này tương tự như bản đồ trên con đường. Nó xác định địa chỉ IP và quyết định đường đi tốt nhất để truyền dữ liệu từ điểm này đến điểm khác.
->- Lớp vận chuyển (Transport Layer): Lớp này giống như những người giao hàng. Nó chịu trách nhiệm vận chuyển dữ liệu từ nguồn đến đích một cách an toàn. Nó chia dữ liệu thành các phần nhỏ (gói) và sau đó tập hợp lại ở đích.
+>- Lớp ứng dụng (Application Layer): Lớp này giống như giao diện người dùng trên một ứng dụng. Đây là lớp mà người dùng tương tác với các ứng dụng và dịch vụ mạng.
+>- Lớp trình diễn (Presentation Layer): Lớp này như một thông dịch viên. Nó chuyển đổi dữ liệu từ định dạng mà ứng dụng có thể hiểu sang định dạng mà mạng có thể chuyển và ngược lại
 >- Lớp phiên (Session Layer): Lớp này tương tự như việc kiểm tra ID khi bạn đi vào một sự kiện. Nó quản lý việc thiết lập và ngắt kết nối giữa hai hệ thống đang trao đổi thông tin.
->- Lớp trình diễn (Presentation Layer): Lớp này như một thông dịch viên. Nó chuyển đổi dữ liệu từ định dạng mà ứng dụng có thể hiểu sang định dạng mà mạng có thể chuyển và ngược lại.
->- Lớp ứng dụng (Application Layer): Lớp này giống như giao diện người dùng trên một ứng dụng. Đây là lớp mà người dùng tương tác với các ứng dụng và dịch vụ mạng
->- Trong bài này ta tập trung và 4 layer đầu: Physical Layer, Data Link Layer, Network Layer, Transport Layer.
+>- Lớp vận chuyển (Transport Layer): Lớp này giống như những người giao hàng. Nó chịu trách nhiệm vận chuyển dữ liệu từ nguồn đến đích một cách an toàn. Nó chia dữ liệu thành các phần nhỏ (gói) và sau đó tập hợp lại ở đích.
+>- Lớp mạng (Network Layer): Lớp này tương tự như bản đồ trên con đường. Nó xác định địa chỉ IP và quyết định đường đi tốt nhất để truyền dữ liệu từ điểm này đến điểm khác.
+>- Lớp liên kết dữ liệu (Data Link Layer): Nó tương tự như một giao điểm trên con đường. Nhiệm vụ của nó là kiểm soát việc chuyển dữ liệu an toàn giữa hai điểm trên cùng một mạng. Nó có thể kiểm tra lỗi và thực hiện việc điều chỉnh nếu cần.
+>- Lớp vật lý (Physical Layer): Lớp này tương tự như các dây cáp và phần cứng khác dùng để truyền tải dữ liệu. Đại diện hình dạng là một con đường, nơi mà dữ liệu (như những chiếc xe) được truyền đi.
 
-# 2. Layer 1 (Physical layer)
+
+
+
+Trong bài này ta tập trung và 4 layer đầu: Physical Layer, Data Link Layer, Network Layer, Transport Layer.
+
+# 2. Layer 7 (Application Layer)
+
+Tầng ứng dụng, hay tầng thứ bảy trong mô hình OSI, là tầng cao nhất, trực tiếp giao tiếp với người dùng cuối. Tầng này cung cấp giao diện để người dùng tương tác với ứng dụng thông qua các giao thức mạng.
+
+## 2.1 Mô tả chung
+
+Tầng ứng dụng không thực sự phải là một ứng dụng mà người dùng tương tác trực tiếp. Thay vào đó, nó cung cấp các dịch vụ mà các ứng dụng cần để thực hiện các hoạt động mạng, như gửi email, truy cập trang web, hay chia sẻ file.
+
+Các giao thức thông dụng ở tầng này bao gồm HTTP (Hypertext Transfer Protocol) cho web browsing, SMTP (Simple Mail Transfer Protocol) cho email, FTP (File Transfer Protocol) cho file transfer, và DNS (Domain Name System) cho dịch vụ tên miền.
+
+## 2.2 Nhiệm vụ của lập trình viên
+
+Lập trình viên khi làm việc với tầng ứng dụng trong mô hình OSI cần nắm vững những giao thức được sử dụng ở tầng này. Họ cần hiểu rõ cách mà các giao thức này hoạt động và cách ứng dụng của họ tương tác với chúng.
+
+Ví dụ, nếu một lập trình viên đang phát triển một ứng dụng web, họ cần biết cách sử dụng HTTP để gửi và nhận thông tin qua mạng. Nếu họ đang viết một ứng dụng email, họ cần hiểu cách SMTP hoạt động.
+
+Lập trình viên cũng cần hiểu rõ cách các ứng dụng của họ tương tác với tầng dưới, tầng vận chuyển (Transport Layer). Điều này đòi hỏi hiểu biết về các giao thức như TCP và UDP, cũng như cách họ được sử dụng để chuyển giao dữ liệu giữa máy tính.
+
+## 2.3 Ví dụ
+
+
+# 3. Layer 6 (Session Layer)
+
+## 3.1 Mô tả chung
+
+Tầng Phiên trong mô hình OSI đóng vai trò như một "phiên dịch viên" giữa tầng ứng dụng (Layer 7) và tầng vận chuyển (Layer 5). Nó đảm bảo rằng dữ liệu được truyền qua mạng có thể được hiểu và xử lý bởi các hệ thống nhận.
+
+## 3.2 Các Chức năng Chính
+
+### 3.2.1 Dịch
+
+Tầng này chuyển đổi dữ liệu giữa các định dạng mà tầng ứng dụng và tầng vận chuyển có thể hiểu được. Điều này bao gồm việc chuyển đổi giữa các định dạng dữ liệu chuẩn, như ASCII, EBCDIC, hoặc biểu diễn số.
+
+### 3.2.2 Mã hóa
+Tầng Phiên có thể mã hóa dữ liệu để bảo mật thông tin. Các thuật toán mã hóa, như SSL/TLS, có thể được áp dụng tại tầng này để đảm bảo rằng dữ liệu được truyền một cách an toàn trên mạng.
+
+### 3.2.3 Nén
+Tầng này cũng cung cấp khả năng nén dữ liệu, giúp tối ưu hóa băng thông và thời gian truyền.
+
+## 3.3 Ví dụ
+
+Trong Linux, nhiều ứng dụng và dịch vụ sử dụng các giao thức tại tầng Phiên (Presentation Layer). Một ví dụ điển hình là việc sử dụng SSL/TLS trong các giao thức mạng như HTTPS.
+
+```
+#include <stdio.h>
+#include <curl/curl.h>
+
+int my_debug_callback(CURL *handle, curl_infotype type, char *data, size_t size, void *userptr)
+{
+    if (type == CURLINFO_TEXT || type == CURLINFO_SSL_DATA_IN || type == CURLINFO_SSL_DATA_OUT)
+    {
+        fprintf(stderr, "%s", data);
+    }
+    return 0;
+}
+
+int main(void)
+{
+    CURL *curl;
+    CURLcode res;
+
+    curl_global_init(CURL_GLOBAL_DEFAULT);
+
+    curl = curl_easy_init();
+    if (curl)
+    {
+        curl_easy_setopt(curl, CURLOPT_URL, "https://example.com");
+        curl_easy_setopt(curl, CURLOPT_DEBUGFUNCTION, my_debug_callback);
+        curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
+
+        res = curl_easy_perform(curl);
+
+        if (res != CURLE_OK)
+            fprintf(stderr, "curl_easy_perform() failed: %s\n",
+                    curl_easy_strerror(res));
+
+        curl_easy_cleanup(curl);
+    }
+
+    curl_global_cleanup();
+
+    return 0;
+}
+```
+
+Trong ví dụ trên, chúng ta đang tạo một yêu cầu HTTPS đến "https://example.com" sử dụng thư viện libcurl. Libcurl sẽ tự động thực hiện việc mã hóa SSL/TLS, tạo một phiên kết nối an toàn giữa client và server.
+
+Phần mã hóa và giải mã SSL/TLS được thực hiện trong hàm curl_easy_perform(), và tất cả các chi tiết về mã hóa được ẩn đi khỏi người lập trình. Libcurl sẽ thực hiện tất cả các bước cần thiết, bao gồm việc trao đổi chứng chỉ, khởi tạo kết nối mã hóa, và mã hóa/ giải mã dữ liệu.
+
+Hàm my_debug_callback() sẽ được gọi với các thông tin khác nhau từ libcurl. Trong hàm callback này, chỉ in ra thông tin nếu nó là loại CURLINFO_TEXT (thông tin chung về quá trình chuyển giao), CURLINFO_SSL_DATA_IN (dữ liệu SSL/TLS đến), hoặc CURLINFO_SSL_DATA_OUT (dữ liệu SSL/TLS đi).
+
+Output:
+
+```
+Rebuilt URL to: https://example.com/
+  Trying 93.184.216.34...
+TCP_NODELAY set
+  Trying 2606:2800:220:1:248:1893:25c8:1946...
+TCP_NODELAY set
+Immediate connect fail for 2606:2800:220:1:248:1893:25c8:1946: Network is unreachable
+Connected to example.com (93.184.216.34) port 443 (#0)
+found 137 certificates in /etc/ssl/certs/ca-certificates.crt
+found 415 certificates in /etc/ssl/certs
+ALPN, offering http/1.1
+SSL connection using TLS1.2 / ECDHE_RSA_AES_128_GCM_SHA256
+         server certificate verification OK
+         server certificate status verification SKIPPED
+         common name: www.example.org (matched)
+         server certificate expiration date OK
+         server certificate activation date OK
+         certificate public key: RSA
+         certificate version: #3
+         subject: C=US,ST=California,L=Los Angeles,O=Internet Corporation for Assigned Names and Numbers,CN=www.example.org
+         start date: Fri, 13 Jan 2023 00:00:00 GMT
+         expire date: Tue, 13 Feb 2024 23:59:59 GMT
+         issuer: C=US,O=DigiCert Inc,CN=DigiCert TLS RSA SHA256 2020 CA1
+         compression: NULL
+ALPN, server accepted to use http/1.1
+```
+
+Dòng "SSL connection using TLS1.2 / ECDHE_RSA_AES_128_GCM_SHA256" cho biết một kết nối SSL/TLS đã được thiết lập thành công, và suite mã hóa ECDHE_RSA_AES_128_GCM_SHA256 đã được sử dụng. Điều này bao gồm cả việc mã hóa dữ liệu gửi đi và giải mã dữ liệu nhận về. Tóm lại, đầu ra cho thấy quá trình thiết lập kết nối SSL/TLS, bao gồm cả mã hóa và giải mã, đã thành công.
+
+
+
+<!-- -----
+# . Layer 1 (Physical layer)
 
 Tầng vật lý, còn được biết đến như tầng dưới cùng của mô hình OSI, xử lý truyền thông trực tiếp giữa các thiết bị phần cứng. Nó bao gồm các yếu tố như điện áp, tốc độ dữ liệu vật lý, tối đa chiều dài cáp, và đầu cắm (connectors).
 
@@ -137,4 +266,4 @@ Khi làm việc tại tầng vật lý, lập trình viên nhúng Linux có mộ
 Như vậy, trách nhiệm của lập trình viên khi làm việc ở tầng vật lý rất đa dạng, từ hiểu rõ phần cứng đến viết và duy trì trình điều khiển thiết bị.
 
 ## 2.3. Ví dụ
-
+ -->
