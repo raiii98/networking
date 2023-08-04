@@ -33,11 +33,11 @@ VD: ASCII, Unicode, SSL, TLS, HTTPS,...
 
 Tầng phiên thực hiện các nhiệm vụ:
 
-- Cung cấp các nhu cầu dịch vụ cho tầng trình diễn.
-- Cung cấp dịch vụ đánh dấu điểm hoàn thành (checkpointing).
-- Hỗ trợ hoạt động đơn công (single), bán song công (half-duplex) hoặc song công (duplex).
-- Thiết lập, quản lý và kết thúc các kết nối giữa trình ứng dụng địa phương và trình ứng dụng ở xa.
-- Có trách nhiệm “ngắt mạch nhẹ nhàng” (graceful close) các phiên giao dịch, đồng thời kiểm tra và phục hồi phiên.
+- Cung cấp các nhu cầu dịch vụ cho tầng trình diễn: Lớp phiên cung cấp dịch vụ để tầng trình diễn (tầng thứ 6 trong mô hình OSI) có thể hoạt động, nghĩa là nó cung cấp giao diện giữa tầng trình diễn và tầng vận chuyển.
+- Cung cấp dịch vụ đánh dấu điểm hoàn thành (checkpointing): Lớp phiên cung cấp dịch vụ đánh dấu điểm hoàn thành (checkpointing), giúp ngăn chặn việc mất dữ liệu nếu có lỗi xảy ra.
+- Hỗ trợ hoạt động đơn công (single), bán song công (half-duplex) hoặc song công (duplex): Lớp phiên kiểm soát cách thức trao đổi dữ liệu giữa các hệ thống, bao gồm việc trao đổi dữ liệu một chiều (đơn công), trao đổi dữ liệu hai chiều nhưng không đồng thời (bán song công) hoặc trao đổi dữ liệu hai chiều đồng thời (song công).
+- Thiết lập, quản lý và kết thúc các kết nối giữa trình ứng dụng địa phương và trình ứng dụng ở xa: Lớp phiên làm nhiệm vụ thiết lập, duy trì và ngắt kết các kết nối giữa các ứng dụng.
+- Có trách nhiệm “ngắt mạch nhẹ nhàng” (graceful close) các phiên giao dịch, đồng thời kiểm tra và phục hồi phiên:  Lớp phiên đảm bảo rằng các phiên làm việc được kết thúc một cách an toàn và kiểm tra cũng như phục hồi các phiên làm việc nếu cần thiết.
 - Chịu trách nhiệm đóng và mở luồng giao tiếp giữa hai, kiểm soát các (phiên) hội thoại giữa các máy tính, đảm bảo các phiên mở đủ lâu để dữ liệu đủ thời gian gửi đi và đóng đủ nhanh để tiết kiệm tối đa tài nguyên.
 
 VD: APIs,Netbios, Tunneling (GRE,MPLS,PPTP)
@@ -105,7 +105,23 @@ VD: Cable, Network cards, wifi, media converters...
 >- Lớp liên kết dữ liệu (Data Link Layer): Nó tương tự như một giao điểm trên con đường. Nhiệm vụ của nó là kiểm soát việc chuyển dữ liệu an toàn giữa hai điểm trên cùng một mạng. Nó có thể kiểm tra lỗi và thực hiện việc điều chỉnh nếu cần.
 >- Lớp vật lý (Physical Layer): Lớp này tương tự như các dây cáp và phần cứng khác dùng để truyền tải dữ liệu. Đại diện hình dạng là một con đường, nơi mà dữ liệu (như những chiếc xe) được truyền đi.
 
+VD: Hãy tưởng tượng chúng ta đang gửi một lô hàng từ điểm A đến điểm B để minh họa ví dụ này:
 
+![](img/Network-diagram.png)
+
+- Lớp Ứng Dụng (Application Layer): Đây là khâu đặt hàng, nơi bạn tạo ra một yêu cầu gửi hàng. Bạn chọn mặt hàng cần gửi và thông báo cho công ty vận chuyển.
+
+- Lớp Trình Diễn (Presentation Layer): Đây là khâu chuẩn bị hàng hóa. Mặt hàng được đóng gói theo cách thích hợp để đảm bảo an toàn trong quá trình vận chuyển.
+
+- Lớp Phiên (Session Layer): Đây là khâu làm hợp đồng với công ty vận chuyển. Các chi tiết về việc gửi hàng được thỏa thuận, bao gồm việc thiết lập và ngắt kết nối với dịch vụ vận chuyển.
+
+- Lớp Vận Chuyển (Transport Layer): Đây là khâu phân chia lô hàng. Nếu lô hàng quá lớn, nó sẽ được chia thành các phần nhỏ để dễ dàng vận chuyển. Mỗi phần nhỏ sau đó được đánh dấu để có thể tập hợp lại đúng thứ tự ở điểm đích.
+
+- Lớp Mạng (Network Layer): Đây là khâu xác định lộ trình. Công ty vận chuyển sẽ xác định đường đi tốt nhất để đưa hàng đến điểm đích dựa trên địa chỉ IP (trong trường hợp này, là địa chỉ giao hàng). Như trên hình tại điểm bắt đầu (start) công ty vận chuyển sẽ phải xác định con đường để vận chuyển hàng đến điểm đích (end), các gói hàng có thể vận chuyển bằng nhiều con đường khác nhau sau đó tập hợp lại tại điểm đích.
+
+- Lớp Liên Kết Dữ liệu (Data Link Layer): Đây là khâu chuyển giao hàng hóa. Khi hàng hóa đến một giao điểm nào đó trên mạng, lớp này kiểm soát việc chuyển hàng hóa từ điểm này sang điểm khác trên cùng mạng. Bạn có thể hình dung các giao điểm là trung tâm trung chuyển hàng hoá.
+
+- Lớp Vật Lý (Physical Layer): Đây là khâu vận chuyển thực tế. Lô hàng được đặt trên xe tải, tàu hoặc máy bay và được vận chuyển qua các con đường, đường sắt hoặc không gian để đến nơi đích. Đây chính là phần cứng - cáp quang, dây đồng, v.v. - mà dữ liệu di chuyển trên đó.
 
 
 Trong bài này ta tập trung và 4 layer đầu: Physical Layer, Data Link Layer, Network Layer, Transport Layer.
