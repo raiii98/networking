@@ -48,9 +48,9 @@ int main(int argc, char *argv[])
 
     char request[16] = {0};        // Initialize to zero
     strncpy(request, argv[2], 15); // Copy up to 15 characters from argv[2]
-    unsigned char encodedRequest[16];
+    unsigned char encodedRequest[1024];
     encodeData((unsigned char *)request, encodedRequest, key);
-    send(client_sock, encodedRequest, 16, 0); // Gửi dữ liệu đã mã hóa
+    send(client_sock, encodedRequest, 1024, 0); // Gửi dữ liệu đã mã hóa
     printf("%s\n", encodedRequest);
 
     char server_response[1024];
