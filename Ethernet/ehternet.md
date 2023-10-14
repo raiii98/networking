@@ -126,7 +126,7 @@ Hoạt động:
 
 - Trả về sk_buff: Cuối cùng, hàm trả về con trỏ đến sk_buff mới cấp phát.
 
-Việc quản lý bộ đệm socket (sk_buff) trong Linux có nhiều bước, và mỗi bước có mục đích và tính năng cụ thể. Dưới đây là giải thích các bước và hàm bạn đã đề cập:
+Việc quản lý bộ đệm socket (sk_buff) trong Linux có nhiều bước, và mỗi bước có mục đích và tính năng cụ thể. Dưới đây là giải thích các bước và hàms đã đề cập:
 
 >Cấp Phát và Căn Chỉnh Header:
 
